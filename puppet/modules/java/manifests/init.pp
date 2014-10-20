@@ -53,13 +53,11 @@ class java {
         require => Exec["untar-java"],
     }
 
-    concat { "/etc/bash.bashrc":
-      ensure => present,
-    }
-
-    concat::fragment { "bashrc":
-      target => "/etc/bash.bashrc",
-      content => template("java/conf/bashrc.erb"),
-      order => "01",
+    file { '/etc/bash.bashrc':
+        ensure => present,
+    }->
+    file_line { 'bashrc':
+        path => '/etc/bash.bashrc',
+        line => template("java/conf/bashrc.erb"),
     }
 }
