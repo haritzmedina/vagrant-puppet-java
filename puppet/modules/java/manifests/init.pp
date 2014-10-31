@@ -1,6 +1,6 @@
 # /etc/puppet/modules/java/manifests/init.pp
 
-class java {
+class java{
 
     require java::params
     
